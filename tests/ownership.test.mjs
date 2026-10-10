@@ -1,0 +1,5 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,rm} from 'node:fs/promises';
+import path from 'node:path';
+test('verified account ownership overrides legacy browser tokens',async()=>{const dir=await mkdtemp(path.join(process.cwd(),'.test-owner-'));process.env.BOOKING_DATA_FILE=path.join(dir,'bookings.json');const {createBooking,editBooking,updateBooking}=await import('../lib/store.mjs');const input={vehicleId:'bus',date:'2026-10-10',start:'09:00',end:'10:00',applicant:'테스트',destination:'학교',purpose:'행사',passengers:1};try{const b=await createBooking(input,'account-a');assert.equal(b.ownerId,'account-a');await assert.rejects(editBooking(b.id,input,b.manageToken,false,'single','account-b'));await assert.rejects(updateBooking(b.id,'cancelled',b.manageToken,false,'account-b'));const [updated]=await editBooking(b.id,{...input,end:'10:10'},null,false,'single','account-a');assert.equal(updated.ownerId,'account-a');await updateBooking(b.id,'cancelled',null,false,'account-a');}finally{await rm(dir,{recursive:true,force:true});}});
