@@ -1,0 +1,1 @@
+export async function GET(req){return Response.json({ok:req.headers.get('x-admin-token')===(process.env.ADMIN_TOKEN||'school-admin-local')},{status:req.headers.get('x-admin-token')===(process.env.ADMIN_TOKEN||'school-admin-local')?200:401});}
