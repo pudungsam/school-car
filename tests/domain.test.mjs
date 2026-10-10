@@ -7,3 +7,5 @@ test('overlap blocks a confirmed or regular booking; adjacent bookings are allow
 test('capacity and invalid times and dates are rejected',()=>{assert.equal(validate(input).passengers,2);assert.throws(()=>validate({...input,passengers:26}));assert.throws(()=>validate({...input,start:'10:00'}));assert.throws(()=>validate({...input,date:'2026-02-30'}));});
 
 
+
+test('bookings accept omitted passenger count',()=>{const {passengers,...fields}=input;assert.equal(validate(fields).passengers,null);assert.equal(validate({...fields,passengers:null}).passengers,null);});
