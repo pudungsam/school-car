@@ -11,7 +11,7 @@ test('edits enforce ownership and preserve original on conflict; series updates 
  const [edited]=await editBooking(b.id,{...input,start:'10:00',end:'11:00'},b.manageToken,false);assert.equal(edited.id,b.id);assert.equal(edited.manageToken,b.manageToken);
  await createBooking({...input,start:'11:00',end:'12:00'});
  const before=await readBookings();await assert.rejects(editBooking(b.id,{...input,start:'11:30',end:'12:30'},b.manageToken,false));assert.deepEqual(await readBookings(),before);
- const series=await createRecurring({...input,vehicleId:'car',year:2026,quarter:4,weekdays:[1]});
+ const series=await createRecurring({...input,vehicleId:'car',startDate:'2026-10-01',endDate:'2026-12-31',weekdays:[1]});
  await assert.rejects(editBooking(series[1].id,{...input,vehicleId:'car'},series[1].manageToken,false,'future'));
  await updateBooking(series[2].id,'cancelled',series[2].manageToken,false);
  await createBooking({...input,vehicleId:'van',date:series[5].date,start:'13:00',end:'14:00'});
