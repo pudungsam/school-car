@@ -15,3 +15,5 @@
 .recurring-dates{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}@media(max-width:800px){.recurring-dates{gap:14px}}
 
 .booking-block[role=button]{cursor:pointer}.booking-detail{width:420px}.booking-detail h2{font-size:23px}.booking-detail dl{margin:22px 0}.booking-detail dl>div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid #eee}.booking-detail dt{color:#86868b}.booking-detail dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.booking-detail>.primary{width:100%}
+
+.booking-checkbox,.bulk-toolbar input{width:18px;height:18px;flex-shrink:0;accent-color:#0071e3;padding:0}.bulk-toolbar{display:flex;align-items:center;gap:18px;margin:24px 0 12px}.bulk-toolbar label{flex-direction:row;align-items:center}.bulk-toolbar>span{color:#86868b;font-size:12px}.bulk-cancel{margin-left:auto;background:#fff0ef;color:#a33030;border-radius:20px;padding:12px 18px;font-weight:600}@media(max-width:800px){.record>.booking-checkbox{margin-bottom:-4px}.bulk-toolbar{flex-wrap:wrap;gap:12px}}
