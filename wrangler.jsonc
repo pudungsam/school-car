@@ -13,7 +13,8 @@
     "BOOKING_STORAGE": "d1",
     "NEXT_PUBLIC_SUPABASE_URL": "https://cnxgxupsakeygwwmrqun.supabase.co",
     "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_NzgEkwig4PqGBs7zG3s0UA_9HARAVQ0",
-    "AUTH_URL": "https://byeolmuri-school-car.pudungsam.workers.dev"
+    "AUTH_URL": "https://byeolmuri-school-car.pudungsam.workers.dev",
+    "DEVELOPER_EMAIL": "gisulsam@bmrschool.org"
   },
   "d1_databases": [
     {

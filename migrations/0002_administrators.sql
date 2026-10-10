@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS administrators (email TEXT PRIMARY KEY, name TEXT NOT NULL DEFAULT '', status TEXT NOT NULL CHECK(status IN ('pending','approved')), created_at TEXT NOT NULL, approved_by TEXT);
