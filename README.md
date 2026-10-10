@@ -1,5 +1,21 @@
 # 학교 차량 예약
 
+## 외부 접속 주소
+
+https://byeolmuri-school-car.pudungsam.workers.dev
+
+기존 예약 2건을 Cloudflare D1으로 이전했습니다. Supabase 운영 로그인 복귀 주소도 등록했습니다. 로컬 브라우저의 내 신청 관리 토큰은 다른 도메인으로 자동 이동하지 않으므로 이전 예약의 수정은 담당자 화면에서 진행할 수 있습니다.
+
+## Cloudflare 배포
+
+`npm run cf:build`로 OpenNext Workers 번들을 빌드하고 `npx wrangler deploy`로 배포합니다. Cloudflare 계정 인증이 필요합니다. `wrangler.jsonc`의 BOOKINGS_DB 바인딩과 BOOKING_STORAGE=d1 설정으로 예약을 D1에 영구 저장합니다. 로컬 개발은 기존 JSON 파일 저장을 사용합니다.
+
+스키마는 `npx wrangler d1 migrations apply byeolmuri-school-car-bookings --remote`로 적용합니다. D1 저장은 버전 비교 후 갱신하는 방식으로 여러 요청의 쓰기 충돌을 재검사하며, 충돌한 예약이나 실패한 정기 수정은 저장하지 않습니다.
+
+외부 배포에는 Cloudflare 비밀 환경변수 ADMIN_TOKEN이 필요합니다. 프로덕션에서 개발용 기본 비밀번호는 허용하지 않습니다. 운영 비밀번호는 로컬 .env.local에서 확인하고 GitHub에 커밋하지 마세요.
+
+배포 주소가 정해지면 AUTH_URL을 해당 HTTPS 주소로 설정하고 Supabase Authentication Redirect URLs에 `배포주소/api/auth/callback`을 추가합니다. Google Cloud에 등록한 Supabase callback URL은 그대로 사용합니다.
+
 Next.js App Router 기반 한국어 학교 차량 예약 서비스입니다. 일반 신청은 선착순으로 즉시 확정되며 승인 단계가 없습니다.
 
 ## 실행

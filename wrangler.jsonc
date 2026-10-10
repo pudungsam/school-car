@@ -1,0 +1,29 @@
+{
+  "name": "byeolmuri-school-car",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-10",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "BOOKING_STORAGE": "d1",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://cnxgxupsakeygwwmrqun.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_NzgEkwig4PqGBs7zG3s0UA_9HARAVQ0",
+    "AUTH_URL": "https://byeolmuri-school-car.pudungsam.workers.dev"
+  },
+  "d1_databases": [
+    {
+      "binding": "BOOKINGS_DB",
+      "database_name": "byeolmuri-school-car-bookings",
+      "database_id": "60487638-e4e2-49da-8579-f7ae45190ed1",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "account_id": "cbb479d2ab3c7955cc468135b5a5cc06",
+  "workers_dev": true,
+  "preview_urls": false
+}

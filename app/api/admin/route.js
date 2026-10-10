@@ -1,1 +1,2 @@
-export async function GET(req){return Response.json({ok:req.headers.get('x-admin-token')===(process.env.ADMIN_TOKEN||'school-admin-local')},{status:req.headers.get('x-admin-token')===(process.env.ADMIN_TOKEN||'school-admin-local')?200:401});}
+import {isAdmin} from '../../../lib/admin.mjs';
+export async function GET(req){return Response.json({ok:isAdmin(req)},{status:isAdmin(req)?200:401});}
