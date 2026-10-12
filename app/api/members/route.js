@@ -1,0 +1,7 @@
+import {googleAccount} from '../../../lib/supabase.mjs';
+import {isAdmin} from '../../../lib/admin.mjs';
+import {membership,registerMember,listMembers,reviewMember} from '../../../lib/members.mjs';
+export const dynamic='force-dynamic';
+export async function GET(req){const user=await googleAccount();if(!user)return Response.json({error:'Google 로그인이 필요합니다.'},{status:401});if(new URL(req.url).searchParams.get('view')==='admin'){if(!await isAdmin(req,user))return Response.json({error:'관리자 권한이 필요합니다.'},{status:403});return Response.json(await listMembers(),{headers:{'Cache-Control':'no-store'}});}return Response.json(await membership(user),{headers:{'Cache-Control':'no-store'}});}
+export async function POST(req){const user=await googleAccount();if(!user)return Response.json({error:'Google 로그인이 필요합니다.'},{status:401});if(req.headers.get('origin')!==new URL(req.url).origin)return Response.json({error:'허용되지 않은 요청입니다.'},{status:403});try{const {name}=await req.json();await registerMember(user,name);return Response.json({ok:true},{status:201});}catch(e){return Response.json({error:e.message},{status:400});}}
+export async function PATCH(req){const user=await googleAccount();if(!user)return Response.json({error:'Google 로그인이 필요합니다.'},{status:401});if(req.headers.get('origin')!==new URL(req.url).origin)return Response.json({error:'허용되지 않은 요청입니다.'},{status:403});try{const {id,status}=await req.json();await reviewMember(user,id,status);return Response.json({ok:true});}catch(e){return Response.json({error:e.message},{status:403});}}

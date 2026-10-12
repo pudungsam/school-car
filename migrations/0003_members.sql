@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS members (user_id TEXT PRIMARY KEY,email TEXT NOT NULL,name TEXT NOT NULL,status TEXT NOT NULL CHECK(status IN ('pending','approved','rejected')),requested_at TEXT NOT NULL,reviewed_by TEXT);
